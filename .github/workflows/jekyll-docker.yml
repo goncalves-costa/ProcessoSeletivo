@@ -8,6 +8,8 @@ on:
 
 jobs:
 
+  
+
   dependabot:
 
     runs-on: ubuntu-latest
@@ -24,4 +26,12 @@ jobs:
         run: gh pr edit "$PR_URL" --add-label "production"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
-  
+          
+      - name: Fetch Metadata from Dependabot PRs
+  # You may pin to the exact commit or the version.
+  # uses: dependabot/fetch-metadata@4de7a6c08ce727a42e0adbbdc345f761a01240ce
+        uses: dependabot/fetch-metadata@v1.3.6
+        with:
+          # If true, then populate the `alert-state`, `ghsa-id` and `cvss` outputs
+          alert-lookup: True
+
